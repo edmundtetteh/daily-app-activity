@@ -1,84 +1,85 @@
+
 /*
 
   Conditionals
-  - conditionals will act as a control for the flow of our apps and functions
-  The basic structure of a conditional
 
-  Mutually exclusive condition
-    - like a coin flip, you can either be heads or tails, but not both
-    - only one condition can be met
+  - Conditional statements will act as a control for the flow of apps and functions
+  The basic structure
 
   if (condition or comparison){
-  <run this code>
+    <run this code>
   } else if (other condition or comparison) {
-  <run this code>
+    <run this code>
   } else {
-  <do this code if none of the conditions are met>
+    <do this code if none of the conditions are met>
   }
 
-  Not mutually exclusive
-  Because we can meet multiple conditions
-
-  if(condition) {
-    run this code
-  }
-  if(condition) {
-    run this code
-  }
-
+  - Mutually exclusive condition - think of it like a coin flip, it can be either heads or tails, but not both
 */
 
+// console.log('VEGETA WHAT DOES THE SCOUTER SAY ABOUT HIS POWER LEVEL!!!??')
+
+let powerLevel = 9000;
+
 //mutually exclusive condition
-
-// console.log("VEGETA WHAT DOES THE SCOUTER SAY ABOUT HIS POWER LEVEL????!!!!");
-
-let powerLevel = 9001;
-//order does matter
-// if(powerLevel > 9000) {
-//   console.log('ITS OVER 9000!!!!!');
-//   console.log('what!? 9000!!!');
-// } else if(powerLevel > 1000) {
-//   console.log('hes a weakling')
+// if(powerLevel >= 9000) {
+//   console.log('Its over 9000!!!!');
+//   console.log('WHAT!? 9000!!!!!');
+// } else if(powerLevel > 900) {
+//   console.log('worm...')
 // } else {
-//   console.log('what is this power');
+//   console.log('scouter is malfunctioning...')
+// };
+
+// //non mutually exclusive
+// if(powerLevel > 9000) {
+//   console.log('its over 9000!')
+// }
+// if(powerLevel > 3000) {
+//   console.log('its over 3000!')
+// }
+// if(powerLevel > 1000) {
+//   console.log('its over 1000')
 // }
 
-//not mutually exclusive condition
-// we can fulfill both conditions
-// if (powerLevel > 9000) {
-//   console.log("ITS OVER 9000!!!!!");
-//   console.log("what!? 9000!!!");
-// }
-// if (powerLevel > 1000) {
-//   console.log("hes a weakling");
-// }
-
-// function checkPowerLevel(name, powerLevel) {
-//   console.log("VEGETA WHAT DOES THE SCOUTER SAY ABOUT HIS POWER LEVEL????!!!!");
-//   if (powerLevel > 9000) {
-//     console.log("ITS OVER 9000!!!!!");
-//     console.log("what!?" + name + ' power level is over 9000!!!');
-//   } else if (powerLevel > 1000) {
-//     console.log(name + ' ' + "is a weakling");
-//   } else {
-//     console.log("what is this power");
-//   };
-//   return name;
-// }
-
-//we can do shorthand
-//if your if statement can be done one line , you can omit curlys
 function checkPowerLevel(name, powerLevel) {
-  console.log("VEGETA WHAT DOES THE SCOUTER SAY ABOUT HIS POWER LEVEL????!!!!");
-  if (powerLevel > 9000)console.log("ITS OVER 9000!!!!!","what!?" + name + " power level is over 9000!!!");
-  else if (powerLevel > 1000) console.log(name + " " + "is a weakling");
-  else console.log("what is this power");
-  return name;
-}
-// console.log(checkPowerLevel("krillin", 1700));//name
-// console.log(checkPowerLevel("jiren", 10000000));
+  if (powerLevel >= 9000) {
+    console.log("Its over 9000!!!!");
+    console.log("WHAT!?" + name + " power is level is over 9000!!!!!");
+  } else if (powerLevel < 9000) {
+    console.log(name + " is a " + "worm...");
+  } else {
+    console.log("this power..., who are you", name);
+  }
 
-//dark mode w ternarys
+  return name + " power level is " + powerLevel;
+}
+
+// console.log(checkPowerLevel("krillin", 400));
+// console.log(checkPowerLevel('jiren', '????'));
+// checkPowerLevel('goku', 10000);
+
+function checkPowerLevel2(name, powerLevel) {
+  if (powerLevel >= 9000)
+    console.log(
+      "Its over 9000!!!!WHAT!?" + name + " power is level is over 9000!!!!!"
+    );
+  else if (powerLevel < 9000) console.log(name + " is a " + "worm...");
+  else console.log("this power..., who are you", name);
+  return name + " power level is " + powerLevel;
+}
+
+// console.log(checkPowerLevel2("krillin", 400));
+
+
+//ternary's
+//condition ? <if condition is true> : <if condition is false>
+
 let darkMode = false;
-//condition ? <if condition is true> : <if condition is not true>
-darkMode ? console.log('turn on darkmode') : console.log('turn off darkmode')
+// if(darkMode === true) {
+//   console.log('turn on dark mode')
+// } else {
+//   console.log('turn off dark mode')
+// }
+
+// darkMode ? console.log('turn on dark mode') : console.log('turn off dark mode');
