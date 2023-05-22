@@ -1,61 +1,63 @@
+
 /*
 
 
-  Arrow functions!
-  What are arrow functions?
-    - Arrow function, aka fat arrows (=>)
-    - are more concise way of declaring of function
 
-    Differences?
-      - this value - learn more in week 4
+
+  What are Fat arrows?
+  - Arrow functions, aka Fat arrows =>
+    are a more concise way of declaring our functions
+
+  - Differences?
+    - this value -
 
 */
 
-//function expression
-//storing an anonymous function in variable
-let sayHello = function (name) {
-  return "hello " + name;
+
+// function expression
+// storing an anon function ia variable
+let sayName = function (name) {
+  return 'hello ' + name;
+}
+
+// console.log(sayName('brandon'));
+
+// use fat arrow!
+// move the function keyword after the parameter and convert to an arrow =>
+// if you use curlys, need return keyword
+// if you have one parameter you can omit parenthesis
+let sayName2 = name => {
+  return 'hello ' + name;
 };
 
-// console.log(sayHello('brandon'));
+// let sayName3 = name => 'hello ' + name;//implicit
 
-//use fat arrow
-//replace the function keyword with the =>,  move the arrow after the parameters
-//omit the parenthesis, if there is only one parameter
-let sayHello2 = (name) => {
-  return "hello " + name;
-};
+// console.log(sayName2('Anabel'));//
 
-// console.log(sayHello2('brandon'));//hello brandon
+// fat arrow with multiple args
+// if you have two args cannot omit parenthesis
+let addNums = (num1, num2) => {
+  return num1 + num2;
+}
 
-//a one liner using implicit return
-//we can implicit return, when the statement is only one line
-let sayHello3 = (name) => "hello " + name;
-// console.log(sayHello3('brandon'));
+// console.log(addNums(10, 12));//22
 
-//with implicit return
-//if you have two args, you cannot omit the parenthesis around the parameters
-let addNums = (num1, num2) => num1 + num2;
-// console.log(addNums(10, 13));//23
+// if we wanted to make an implicit return
+// we have to make sure that are statement can be done in one line
+// if it can, they you can omit the curyls and the return keyword
 
-//cant implicit return this
-let addNums1 = (num1, num2) => {
-  let res = num1 + num2;
-  return res;
-};
+let addNumsImplicit = (num1, num2) => num1 + num2;
 
-console.log(addNums1(10, 12));
+// console.log(addNumsImplicit(11, 23));//34
 
-//function declaration vs expression/fat arrow
-//where you can access the function
-//function expression - ReferenceError: Cannot access 'addNums1' before initialization
-//cannot access function if function call is above the function
-//function declaration - can be accessed before initialization
-//can access function if function call is above, due to hoisting which we learn in week 3
+// return an object implicitly
+// let obj = {};
+// wrap obj literal in parenthesis
+// object literal - {}
+let returnObj = () => ({ name:'brandon'})
+console.log(returnObj());{}
 
-//return an object implicitly
-// let obj = {}
-// a codeblock - {};
-//youll use thr grouping operator to groupe the object, so wrap object like so -> ( { key: value } )
-let returnObj = () => ({name: "brandon"});
-// console.log(returnObj());//{name: "brandon"}
+
+// let arr literal = [];
+// obj literal = {};
+// string literal; '',"",``

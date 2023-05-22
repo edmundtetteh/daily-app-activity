@@ -25,7 +25,7 @@ function costOfGroceries(groceries) {
 function mostExpensiveGroceries(groceriesList) {
     
   
-    let highestCost = costOfGroceries(groceriesList[0])
+    let highestCost = -Infinity
     let index = 0
 
     for(let i=0; i<groceriesList.length; i++){
