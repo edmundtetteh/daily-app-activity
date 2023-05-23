@@ -3,19 +3,20 @@
 
 //includedInObject
 const includedInObject = (obj, key) => {
-  if(obj[key] !== undefined) return true;
-  return false;
+  // Write your solution here.
+// console.log(obj, key)
+// if(obj[key] !== undefined) return true;
+// return false;
+//   for(let keys in obj) {
 
-  //return key in obj
-  //return Object.keys(obj).includes(key);
+//    if(keys.includes(key)) return true
+//   }
+//   return false;
+// return key in obj
+// let keysArr = Object.keys(obj);
+
+return Object.keys(obj).includes(key);
 }
-
-//OR
-const includedInObject2 = (obj, key) => {
-  if(obj.hasOwnProperty(key)) return true;
-  return false;
-}
-
 //--------------------------------------------------
 ///Check if value is in object
 //valInObject
@@ -37,38 +38,49 @@ const valInObject = (obj, value) => {
 
 //----------------------------------------------------
 //Frequency counter
-//mostCommonChar
-const mostCommonChar = (sentence) => {
-  let obj = {};
+const sentence = "What is the most common character in this sentence";
 
-  let newSentence = sentence.split(" ").join("");
+const mostCommonChar = sentence => {
+  // console.log(sentence);//What is the most common character in this sentence
 
-  for (let letter of newSentence) {
-    if (letter in obj) {
-      obj[letter] += 1;
+  let newSentence = sentence.split(' ').join('');//removes empty spaces
+  // console.log(newSentence);//Whatisthemostcommoncharacterinthissentence
+
+  //we need the most common character
+  //how can we track how many time each characters appears? With a obj
+  let countObj = {};//{a:3,b:1,c:4}
+  //poulate the countObj
+  for(let i = 0; i < newSentence.length; i++) {//iterate through newSentence
+   let letter = newSentence[i];
+   // console.log(letter);
+
+    if(countObj[letter] === undefined) {//check if letter exists in countObj
+      countObj[letter] = 1; //if letter does not exists in countObj
+      						//create a key of the current letter and set the value to 1 -> {W:1}
     } else {
-      obj[letter] = 1;
-    }
+      countObj[letter] += 1;//if letter does exsits, increment the value by one -> {W:2}
+    };
   }
 
-  let highest = -Infinity;
+  // console.log(countObj);
+  let highest = -Infinity;//use as comparison of first iteration, placeholder to compare
   let currentKey;
-
-  for (let key in obj) {
-    if (obj[key] > highest) {
-      highest = obj[key];
-      currentKey = key;
-    } else if (obj[key] === highest) {
-
-      if (key < currentKey) {
-        currentKey = key;
+  //we need to check all the keys and values
+  for(let letter in countObj) {//letter is the key, occurence is the value {letter:occurences}
+    // console.log('letter', letter);
+    let occurence = countObj[letter]
+    // console.log('value', occurence)
+    if(occurence > highest) {
+     highest = occurence;
+     currentKey = letter; //a:4 same occurence as b:4 so compare a < b
+    } else if(occurence === highest){//if occurence is the same we need to find the lexi graphically smaller
+      if(letter < currentKey){//if the current letter is lexigrahpically smaller, do something
+        currentKey = letter;
       }
-
     }
-
   }
-  return currentKey;
-};
+ return currentKey;
+}
 
 
 //-----------------------------------------------
@@ -100,3 +112,5 @@ const printDepthOfTwo = obj => {
       }
   }
 }
+
+
