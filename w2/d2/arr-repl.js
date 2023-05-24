@@ -1,4 +1,3 @@
-
 //forEach
 friends.forEach((friend) => {
   console.log(friend.name + ": " + friend.yearsOfFriendship + " years");

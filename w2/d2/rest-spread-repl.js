@@ -33,7 +33,9 @@ const objSpread = {
 const { ...objRest } = obj;
 
 //objClone
-//on right spreading object adding new key-value pair
-//on left destructuring out the object to the right with  and store it in ...objClone
-//destructuring green out of the objClone
-const {green, ...objClone} = { ...obj, yellow: "pentagon"}
+let { green, ...objClone } = {...obj, yellow: 'pentagon' };
+
+// on right -  spreading old obj, into a new object literal(this a new object), while adding a key value pair of yellow:'pentagon'
+// on left - destructuring out the green key from the object to the right,
+// and spreading the rest of the values not including the key removed the green key,
+// and storing it in a variable called objClone
