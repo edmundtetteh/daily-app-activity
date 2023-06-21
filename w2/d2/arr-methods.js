@@ -1,118 +1,147 @@
 /*
 
+
   Array methods!
-  What are array methods?
   - built in functions in javascript
   - quality of life
   - built in logic that we can use and not have to write ourselves over and over
 
   Array methods!
-   - forEach
-   - map
-   - filter
-   - reduce
-   - find
+  - forEach
+  - map
+  - filter
+  - reduce
+  - find
 
+  * were passing a value from the array to the callbacks function each iteration
 */
 
-// what we know!
+//what we know
 let arr = [1, 2, 3];
-// for(let i = 0; i < arr.length; i++){
-//   console.log(i, arr[i])
-// }
 
-// arr.forEach((el, i, arr)=> console.log(i, el, arr));
+for (let i = 0; i < arr.length; i++) {
+  let ele = arr[i];
+  // console.log(ele, i, arr);
+}
 
-// forEach - touches every element of an array, modify or access it
-// forEach does not return anything
-// the for each methods executes a provided function once for every element in the array
+// QOl forEach
+// The forEach() method executes a provided function once for each array element.
+// we have access to the element, index, and the array, we can name the variables we want
+// check mdn if we forget syntax
 
-// arr.forEach(function(el, i, arr) {
-//   console.log(el, i, arr);
+// in callback (element, index, array) - can change variables
+// arr.forEach((ele, i, arr) => console.log(ele));
+// arr.forEach(function (ele, i, arr) {
+//   console.log(ele, i, arr);
+// });
+// arr.forEach((ele, i, arr) => {
+//   console.log(ele, i, arr);
 // });
 
-
 let includesTwo = (arr) => {
-  // console.log(arr);
-  // for(let i = 0; i < arr.length; i++){
-  //   let ele = arr[i];
+  // for(let i = 0; i < arr.length; i++) {
+  //   let ele  = arr[i];
   //   if(ele === 2) return true;
   // }
+
   let bool = false;
-  arr.forEach((el, i, arr) => {
-    // if(el === 2) return true;//  cant return in a forEach
-    if(el === 2) bool = true;
-  })
+  arr.forEach((ele) => {
+    console.log(ele);
+    if (ele === 2)
+      // return true;//! we CANT return in a forEach
+      bool = true;
+  });
 
   return bool;
 };
 
-// console.log(includesTwo([1,2,3,4,5]))
+// console.log(includesTwo([1, 2, 3, 4, 5])); //true
 
+// arr.forEach((ele) => console.log(ele));
+
+// arr.forEach(function (ele) {
+//   console.log(ele);
+// });
+
+// arr.forEach((ele) => {
+//   console.log(ele);
+// });
 
 // .map
-// The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
-// return is the new array
-let doubledNum = (...nums) => {
-  // let doubled = [];
-  // for(let i = 0; i < nums.length; i++){
-  //   let num = nums[i];
-  //   doubled.push(num * 2);
-  // }
-  let doubled = nums.map((num) => num * 2);//result of passing the current element in the arr to the callback function
-  // is stored in the return of .map, in this case doubled
+//The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
+// return is a new array
 
-  return doubled;//[ 2, 4, 6, 8, 10 ]
+let doubledNums = (...nums) => {
+  // let doubled = [];
+
+  // for(let i = 0; i < nums.length; i++) {
+  //   let num = nums[i];
+  //   // console.log(num);
+  //   doubled.push(num * 2)
+  // }
+  // let doubled = nums.map( num => num * 2 )
+
+  return nums.map(function (num) {
+    return num * 2;
+  });
 };
 
-let doubledNum2 = (...nums) => nums.map(num => num * 2);
+// console.log([1,2,3].map( num => num * 2 ))
+// console.log(doubledNums(1,2,3,4,5));//[ 2, 4, 6, 8, 10 ];
 
-// console.log(doubledNum(1,2,3,4,5))
+// filter
+// The filter() method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
+// return an array of all the elements that meet a condition
 
-//filter
-//The filter() method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
-
+//only odds
 let onlyOdds = (...nums) => {
   // let res = [];
-  // for(let num of nums){
+  // for(let i = 0; i < nums.length; i++) {
+  //   let num = nums[i];
   //   if(num % 2 !== 0) res.push(num);
   // };
 
-  let res = nums.filter(function(num) {
-    if(num % 2 !== 0) return true;
-    return false;
-  })
+  return nums.filter(function (num) {
+    return num % 2 !== 0;
+  });
 
-  return res;
-
+  // return res;
 };
 
-// console.log(onlyOdds(1,2,3,4,5));//
+// let onlyOdds = (...nums) => nums.filter(num => num % 2 !== 0);
 
+// console.log(onlyOdds(1, 2, 3, 4, 5)); //[ 1, 3, 5 ]
 
-//. find
-// The find() method returns the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.
+//works outside function as well
+// console.log([1,2,3].filter( function (num) {
+//   return num % 2 !== 0;
+// }));
 
-let found = ['hey', 'whats', 'up'].find(word => word.length > 7);
-// console.log(found);//hey
-// console.log(['hey', 'whats', 'up'].find(word => word.length > 2))
+// let res = [1,2,3,4,5].filter((num) => num % 2 !== 0);
+// console.log(res(1, 2, 3, 4, 5));
 
+//find
+//The find() method returns the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.
 
+// let found = ['hey','whats','up'].find(word => word.length < 3)
+// console.log(found);//up
 
-// reduce
-// The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+/*
+The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+*/
 
 // sumArr
 let sumArr = (nums) => {
-  let sum = nums.reverse().reduce(function(acc, el, i, arr){
-    console.log('acc: - ',acc, 'el: - ',el);
-    return acc + el;// 6
-  }, 0);// initial value, if one is not provided, it defaults to first value in arr
+  let res = nums.reduce((sum, num) => {
+    // console.log(sum, num);
+    sum += num;
+    // console.log(sum);
+    return sum;
+  }, 10000);//if we dont pass default value, it will default to first element of arr
 
-  return sum;
+  return res;
 };
 
-console.log(sumArr([1,2,3]));
+let sumArr2 = nums => nums.reduce((sum, num) => sum += num,0);
 
-let sumArr2 = (nums) => nums.reduce((acc, num) => acc + num,0);//9
-console.log(sumArr2([2,3,4]))
+// console.log(sumArr([1, 2, 3, 4, 5])); //15

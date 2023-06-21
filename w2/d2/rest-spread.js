@@ -2,184 +2,167 @@
 
 
 
-  Rest and spread operator!
 
-  What is rest operator!
-  - The rest operator allows us to accept any arbitrary number of arguments inside of a function
+
+  Rest and spread Operator
+
+  What is the rest operator?
+  - The rest operator allows us to accept an arbitrary amount of arguments inside of a function
   - rest will gather any additional arguments and place them in a array
 
-  * we know the a function can take fewer args than expected
-   - params will be undefined if no args is passed
+  * we know a function can take fewer args than expected
+    - params will be undefined
 
-  * a function that can accepts additional arguments
-  - using rest!
+  * a function that can accept additional arguments
+    - using rest
+
 */
 
+//rest
+// use three dots ...
+// must be positioned last
+// gather the rest of the arguments that do not have parameters to represent them
+// and instead store them in array called restOfWords
 
-//examples using rest
-// if you add a param, outside of rest, it will gather the rest of the elements in an array
-let sumNums = (num1,...numbers) => {
-  // console.log(num1, numbers);//rest will gather al elements in an array
-  let sum = num1;
-  for(let num of numbers) {
-    sum += num;
-  };
-  return sum;
+let sentenceMaker = (word1, ...restOfWords) => {
+  // console.log(word1, restOfWords);
+  // return word1 + ' ' + word2;
+  let sentence = word1;
+  for (let word of restOfWords) {
+    // console.log(word);
+    sentence += " " + word;
+  }
+  return sentence;
+  // return word1 + ' ' + restOfWords.join(' ')
 };
 
-
-// console.log(sumNums(1,2,3,4))
-// console.log(sumNums(2,3))
-// console.log(sumNums(1,2,3,4,54,6,67))
-
-
-let sentenceMaker = (...words) => words.join(' ') + '!'
-
-// console.log(sentenceMaker('lets','make','a','sentence'))
-
-
+// console.log(sentenceMaker('hello', 'world'));//hello world
+// console.log(sentenceMaker('lets', 'make', 'a', 'longer', 'sentence'));//lets make
 
 /*
 
-     Spread!
-      - the spread operator is users to SPREAD all elements of an object/array into another object/array
-      * it creates a shallow copy
+  Spread Operator
+  - the spread operator is used to SPREAD all elements of an object/array/string into another object/array/string
+  - spread creates a shallow copy
 
 */
 
-
 //spread with arrays
-let arr1 = [1,2,3];
-let arr2 = [4,5,6];
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
 let arr3 = [0, arr1, arr2];
-console.log(arr3);//[ 0, [ 1, 2, 3 ], [ 4, 5, 6 ] ]
-//not quite what we want
+// console.log(arr3);//[ 0, [ 1, 2, 3 ], [ 4, 5, 6 ] ]
+//Not what we want
 
-//use spread
-//can also values when spreading
-let arr4 = [0, ...arr2, ...arr1];//order matters whe you spread
+//use spread!
+//can add values when spreading
+// like extracting the values from an array and spreading them into a new one
+let arr4 = [0, ...arr1, ...arr2, 7, 8, 9];
 // console.log(arr4);//[ 1, 2, 3, 4, 5, 6 ]
 
-// let arr5 = arr1.concat(arr2);//two different ways to the same things
-// spread can be used to create copies
-// let copy = arr.slice();
-// let copy2 = [...arr];
+//spread can be used to make copies
+let copy = arr4.slice();
+let copy2 = [...arr4];
+//both will make a shallow copy
 
-let obj1 = {name: 'brandon'};
-let obj2 = {pet:'cat', favColor:'red'};
-let obj3 = {obj1, obj2, city:'brooksville'};//not what we want, because we dont want nested objects!
+// spread with objects
+let obj1 = { name: "brandon" };
+let obj2 = { pet: "cat", favColor: "red" };
+let obj3 = { obj1, obj2, city: "brooksville" };
 // console.log(obj3);
+// not what we want , end up with nested objects
+//can add key:value pairs when spreading as well well
 
-// use spread if you dont want nested objects
-// add key:value pairs when spreading
-let obj4 = {...obj1, ...obj2, city:'broosville', city:'tampa', age: 27}
-// console.log(obj4);
+let obj4 = { ...obj1, ...obj2, city: "brooksville" };
+// console.log(obj4);//{ name: 'brandon', pet: 'cat', favColor: 'red', city: 'brooksville' }
 
-//spread adds the key:value pairs from one object to another, but does not nest the object
+//spreading with objects make a shallow copy
+let copyObj = { ...obj4 };
+// console.log(copyObj);
 
+//destructuring
+let numArr = [10, 20, 30, 40];
 
-// DESTRUCTURING
-// array
-let numArray = [10,20,30];
+// unpack the values from the array
+let [firstEl, secondEl] = numArr;
+// console.log(firstEl, secondEl, numArr);//10 20
 
-// ! unpacking
-// let keyword, the literal you want to destructure out of, and the array you are destructing from
-// variables can named anything, they are positional
-let [firstEl, secondEl, thirdEl] = numArray;
-console.log(firstEl, secondEl, thirdEl);//10 20 30
+//use a comma to skip elements
+// let [firstEl, , thirdEl] = numArr;
 
+// *  swapping
+let num1 = 45;
+let num2 = 12;
 
-// let [firstEl, , thirdEl] = numArray;
-// Use comma to skip values
-// console.log(firstEl, thirdEl);//10 30
+//this syntax will swap values
+[num1, num2] = [num2, num1];
+// console.log(num1, num2);//12 45
 
-// ! swapping
-let num1 = 17
-let num2 = 3;
+// can swap index in array
+let arr = [20, 10, 30];
+// console.log(arr);
+[arr[0], arr[1]] = [arr[1], arr[0]];
+//[arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; swap values while iterating
+// console.log(arr);//[ 10, 20, 30 ]
+//swap values in an array
 
-//this syntax swap values of two variables
+// array destructuring with rest
+let arr5 = [1, 2, 3, 4, 5, 6, 7];
 
+// let [n1, n2, ...restOfNums] = arr5;
+// console.log(n1, n2, restOfNums);//[ 3, 4, 5, 6, 7 ]
+// use n1 to represent the first num, use n2 to represent the second nums
+// take the rest of the nums and put them into an array named rest of nums
 
-// let a = [2,1,3,4];
-// let b = a.slice()
-// let b  = [...a];
+//rest and spread!
+let [n1, n2, ...restOfNums] = [...arr5, 8];
+// so were saying to the right spread the values of arr 5into the array literal
+// to the left destruct first num to n1 and second n2, and store the rest in the restOfNums
+// console.log(n1, n2, restOfNums);//1 2 [ 3, 4, 5, 6, 7, 8 ]
+// console.log(arr5);
 
-// // swapping -- take values from one spot in array, and move them to another
-// console.table(a)
-// console.log(a)
+//object destructuring
 
-// let tmp = a[0];
-// a[0] = a[1];
-// a[1] = tmp;
-// console.log(a);
-
-let a = [2, 1, 3, 4];
-
-// let [two, one, three, four] = a;
-// //   [a[1], a[0]] = [a[0], a[1]];
-
-// console.log(two);
-// console.log(one);
-// console.log(three);
-// console.log(four);
-
-// let wayne = {
-//     furColor : "black",
-//     hasTail: false,
-//     isChonky: true,
-//     isCuddly: true,
-// };
-
-// let wayneEntries = Object.entries(wayne);
-
-// console.table(wayneEntries)
-// console.log(wayneEntries)
-
-// for (let entry of wayneEntries){
-// for (let [key, value] of wayneEntries){
-//     // console.log(entry)
-//     console.log("at the key of", key,"we have the value", value)
-// }
-
-
-let wayne = {
-    furColor: "black",
-    hasTail: false,
-    isChonky: true,
-    isCuddly: true,
+let obj = {
+  name: "brandon",
+  age: 27,
+  location: { city: "tampa", state: "florida" },
 };
-// let wax = wayne;
-let wax = {...wayne};
-// let wax = {};
-// for (let key in wayne) {
-//     wax[key] = wayne[key];
-// }
-wax.furColor = "torty";
-wax.isChonky = false;
-wayne.hasDraculaTeeth = true;
-console.table(wayne);
-console.table(wax);
-// let {furColor:majesticCoat, isChonky:moreToLove} = wayne;
 
-// console.log(majesticCoat);
-// console.log(moreToLove);
+// let {
+//   name,
+//   age,
+//   location: { city },
+// } = obj;
+// console.log(name, age, city);//brandon 27 tampa
+// let { city, state } = obj.location;
+// console.log(city, state); //tampa florida
 
-let personObj = { name: "brandon", age: 27, pets: { cat: 'mochi' } };
-// destruct object
-// provide the key of what you want the value of
-// let { name, age, pets: { cat } } = personObj;
-// console.log(name, age, pets);//{ cat: 'mochi' }
-// let { cat } = pets;
-// console.log(cat);//mochi
-// let { cat } = personObj.pets
-// console.log(cat);
+let { name, age, ...restOfObj } = { ...obj, favFood: "chicken" };
+// so were saying to the right, spread the key:values pairs of the obj, and add a key:val pair of favFood
+// to the left, destruct into variables name and age, the values assoicated with those keys
+// and store the rest of the key values pairs in a variable called restOfObj
+// console.log(name, restOfObj); //brandon { age: 27, location: { city: 'tampa', state: 'florida' } }
 
-let { name, ...restOfObj} = { ...personObj, favFood: 'chicken'};
-// to the right, spread all values of the personObj into the object literal, add a key value pair
-// to the left, destructure out the name value, and store the rest of the object in the restofObj variable
 
-console.log(name, restOfObj);
-// console.log(personObj);
 
-let newObj = { ...personObj, name: 'krandon', car:'challenger'}
-// console.log(newObj);
+let obj5 = {
+  name: "brandon",
+  age: 27,
+  location: { city: "tampa", state: "florida" },
+};
+
+for(let [key, value] of Object.entries(obj5)){
+  // console.log(entry);
+  // let [key, value] = entry;
+  // console.log(key, value)
+};
+
+function destructure({ name }) {
+
+  // console.log("obj:",   obj);
+  // let { name } = obj;
+  console.log(name);//brandon
+}
+
+destructure({ name: 'brandon'});

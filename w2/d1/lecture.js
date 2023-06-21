@@ -1,58 +1,74 @@
-
 /*
-  What are Fat arrows?
-  - Arrow functions, aka Fat arrows =>
-    are a more concise way of declaring our functions
 
-  - Differences?
-    - this value -
+
+
+
+What are fat arrows?
+ - =>
+ - Arrow functions - a more concise way to declare our functions
+
+ Differences
+ - this value - learn in week 4
 */
 
-
 // function expression
-// storing an anon function ia variable
-let sayName = function (name) {
-  return 'hello ' + name;
+// storing an anon function in a variable
+let sayName = function(name) {
+  return 'hello ' + name
 }
 
-// console.log(sayName('brandon'));
+// sayName('brandon');
 
-// use fat arrow!
-// move the function keyword after the parameter and convert to an arrow =>
-// if you use curlys, need return keyword
-// if you have one parameter you can omit parenthesis
+// but we moved the function keyword after the parenthesis and swapped to a fat arrow =>
+// if you only have one parameter, you can omit the parenthesis
 let sayName2 = name => {
-  return 'hello ' + name;
-};
-
-// let sayName3 = name => 'hello ' + name;//implicit
-
-// console.log(sayName2('Anabel'));//
-
-// fat arrow with multiple args
-// if you have two args cannot omit parenthesis
-let addNums = (num1, num2) => {
-  return num1 + num2;
+  return 'hello ' + name
 }
 
-// console.log(addNums(10, 12));//22
+// console.log(sayName2('brandon'));
 
-// if we wanted to make an implicit return
-// we have to make sure that are statement can be done in one line
-// if it can, they you can omit the curyls and the return keyword
+//implicit vs explicit return
 
-let addNumsImplicit = (num1, num2) => num1 + num2;
+//explicit - non implicit
+//you have to use a return
+//if you have multiple lines of logic
+//you must have curlys and use the return keyword
+let addNums = (num1, num2) => {
+  let sum = num1 + num2;
+  return sum;
+}
 
-// console.log(addNumsImplicit(11, 23));//34
+// console.log(addNums(12,14));
 
-// return an object implicitly
-// let obj = {};
-// wrap obj literal in parenthesis
-// object literal - {}
-let returnObj = () => ({ name:'brandon'})
-console.log(returnObj());{}
+// implicit return
+// it must be able to be done on one line
+// implicit means no curlys and no return
+let addNums2 = (num1, num2) => num1 + num2; //<-- implied that this is what we return
+
+// console.log(addNums2(12,14));//26
+
+//return an object
+// an object is delineated by - {}
+// if you need to return an obj, implicitly, return it in parenthesis
+let returnObj = () => ({ key: 'value'});//<- tell js not a code block an obj
+
+let returnCodeBlock = () => {//<-- not an obj, but a code block
+  let res = {};
+  return res;
+}
+
+// let res = () => [1];
+// console.log(res())
+
+//arr literal
+let arr = [];
+//obj literal
+let obj = {};
 
 
-// let arr literal = [];
-// obj literal = {};
-// string literal; '',"",``
+
+returnCodeBlock(function(num){
+  return num + 1
+});
+
+// returnCodeBlock(num => num + 1);

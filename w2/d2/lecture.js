@@ -1,50 +1,41 @@
 /*
 
+  Reference vs primitive data types!
 
-  Reference vs primitive Types
+  What are primitive data types?
+  * immutable
+  - boolean
+  - string
+  - numbers
+  - null
+  - undefined
+  - everything but objects!
 
-  ? What are primitive data types?
-  ! immutable! cannot be changed!
-  1. boolean
-  2. string
-  3. number
-  4. null
-  5. undefined
-  6. and many more!
-
-  ? What are the reference data types?
-  ! mutable! can be changed
-  1. Objects!
-  2. Everything thats not a primitive data type
-    a. functions
-    b. arrays
-    c. objects
-
-    Great read for under the hood!
-https://blog.alexdevero.com/memory-life-cycle-heap-stack-javascript/#:~:text=As%20you%20know%2C%20stack%20is,function%20to%20the%20call%20stack.
-
+  What are the reference data types?
+  * mutable
+  - Objects
+  - arrays
+  - functions
 
 */
 
-
-//primitive data type
+//primitive example
 let age = 27;
 let newAge = age;
 age += 1;
-console.log(age, newAge); //28 and 27
+console.log(age, newAge);//28 27
 // primitive data types have assigned spots in memory
-// when we assign a variable, we are pointing that variable at the data type in memory
+// when we assign variable we are pointing that variable at that data type in memory
 // we are pointing the age variable at 27 in memory
-// we are then pointing newAge at what age was pointing at age => 27, newAge => 27
-// when we reassign age, we are saying point the age variable at the new value, 28,
-// so now age points at 28 in memory age => 28
-// BUT newAge is still pointing at 27, we never moved that pointer
-
+// we are then pointing newAge at whatever age was pointing at: newAge => age => 27
+// when we reassign age, we are saying point the age variable at the new value 28
+// but the newAge variable still points at 27 in memory
+// immutable data types cant be changed, all were doing is pointing the variable at different data in memory
 
 // reference data type
 // js create reference values by assigning portions of memory
-// we need to allocated memory for reference types, - dynamic memory allocation
-// only one reference type per object
+// we need to allocate memory for reference data types
+// only one reference type object/array/functions
 
 //lets create a reference in memory
 // variable cat, that points at an object in memory
@@ -56,21 +47,38 @@ let cat = {
 // we are pointing a variable at a reference in memory
 
 let cat2 = cat;
-// we are saying point the cat2 variable at whatever cat is pointing at
+// we are saying point the cat2 variable at whatever the cat variable is poiting at
 // cat => <reference1>
-// cat2 => <reference1>
+// cat2 => cat => <reference1>
 
-// cat.name = 'celebi';
-cat2.age = 38
-// console.log(cat, cat2);
-// both cat and cat2 have been changed,. why?
-//{ name: 'celebi', age: 2 } { name: 'celebi', age: 2 }
+cat.name = 'celebi';
+cat.age = 15;
 
-//when you change one, you change both, because the variables tho they are difference, they are pointing at the same reference in memory
+console.log(cat, cat2);//{ name: 'celebi', age: 15 } { name: 'celebi', age: 15 }
+//it changed both values why?
 
-// thats why problem may ask you to make a copy, to maintain the original array/object
+// when you change one, youre end up changing both, because the variables are pointing at the same reference in memory
 
-// if you want to change one and not the other, create a copy
-let cat3 = {...cat};//create a copy
-cat.name = 'mochi';
-console.log(cat3, cat);
+
+// thats why problems may ask you to make a copy, sometimes to maintain the original but also create a copy
+
+//if you want to make a copy and not change the original
+let cat3 = {...cat};//this creates a shallow copy that does not change the original
+// console.log(cat3, cat);//{ name: 'celebi', age: 15 } { name: 'celebi', age: 15 }
+cat3.name = 'mochi';
+// console.log(cat3, cat);
+//{ name: 'mochi', age: 15 } { name: 'celebi', age: 15 }
+// cat => <reference1>
+// cat3 => <reference2> but the reference will have the same values
+
+let arr = [1,2,3];
+let arr2 = arr;
+console.log(arr, arr2);
+arr.push(4)
+console.log(arr, arr2);//[ 1, 2, 3, 4 ] [ 1, 2, 3, 4 ];
+
+//creating a copy allows to create a new reference in memory, allowing us to not change the original
+let arrCopy = arr.slice();//create a shallow copy, creates a new reference in memory
+// let arrCopy = [...arr]; another way to create a copy
+arr.push(5);
+console.log(arr, arrCopy);//[ 1, 2, 3, 4, 5 ] [ 1, 2, 3, 4 ]

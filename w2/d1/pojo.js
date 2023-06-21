@@ -1,211 +1,193 @@
 /*
-  ? What is an Object?
-    - Object - gives us a way of creating collections of values that can be accessed with a key!
-    - Data structure, similar to an array, because an array is an object!
-    - delineated by: {} object has key:value pairs { key:value }
-    - unordered
-    - can store other data types
-      - other objects
-      - arrays
-      - numbers
-      - strings
-      - and more!
-    - keys are always strings, value can be anything!
-    - reference data type
-    - mutable - can be changed!
+
+
+
+  What is an pojo? Plain old javascript object
+  - data type that can hold collections of values that can accessed with a key
+  - contains key:value pairs { key: values }
+  - keys are strings
+  - values can be any data type
+  - You can nest objects within other objects/arrays
+  - can store many data types
+    - other objects
+    - arrays
+    - numbers
+    - strings
+    - and more!
+    - Objects do not have order
+    - have there own methods
+    - can be accessed with [] or .
+  -
+
 */
 
 // Array!
 // arrays are accessed by keying into an index
 // each index corresponds to a value
-// indexes - 0 1 2 4
+// indexes - 0 1 2 3
 // values  - c a t s
-let arr = ["c", "a", "t"];
+let arr = ["c", "a", "t", "s"];
+console.log(arr[0]); //use 0 to get me the value at 0 which is c
+console.log(arr[1]);
+console.log(arr[2]);
+//we are keying into the array at index to get the value
 
-// we are keying into the array at index 0 to get the value c
-// we are using the index like a key
-// console.log(arr[0]);//c
-// console.log(arr[1]);//a
-// console.log(arr[2]);//t
-// console.log(arr[3]);//undefined
+// Object
+//  object literal - {};
+// { key1: value1, key2: value2 } - key values pairs
+// in order to gain access to a value in a object, we must key into using a the key
+// we need the key to get the value
+// key - is usually a string, if a string is not used, it will typecast into a string
+// value - can be any data type
+let catObj = { 0: "c", 1: "a", 2: "t", 3: "s" };
+// console.log(catObj); //{ '0': 'c', '1': 'a', '2': 't', '3': 's' } - number keys typecasts into strings
+// console.log(catObj['0']); //c
+// console.log(catObj['1']); //a
+// console.log(catObj[2]); //t
+// console.log(catObj[0] + catObj[1] + catObj[2] + catObj[3]); //cats
 
-// Object!
-// structure of an obj - { key1: value1, key2: value2 } <- obj with two key:value pairs
-// object literal - {};
+// don't have to put parentheses around the keys as they will type casted into a string
 
-// let exObj = { 'key':'value' };
-let catObj = { 0: "c", 1: "a", 2: "t" };
 
-// in order to gain access to a value in a object, we must key into it using the key
-// so we need the key to get the value
-// key will be a string, if use a number, it will typecast(change the type from number to string) the number into a string
-
-//let access values using the key!
-// console.log(catObj[0], catObj[1], catObj[2]);//c a t
-
-// console.log(catObj);//{ '0': 'c', '1': 'a', '2': 't' } all they keys are strings now!
-// console.log(catObj['0'], catObj['1'], catObj['2']);//c a t
-
-// practical object
+//More practical object
 // values can be objects, arrays, strings, booleans, etc
-// key almost always strings,if not type cast it into a string
+// key - strings or they will be typecasted into string
 let obj = {
-  name: "Brandon",
+  name: 'brandon',
   age: 27,
   softwareEngineer: true,
-  favoriteBands: ["Joyce Manor", "Neck Deep", "Idles"],
+  favoriteBands: ['Joyce Manor', 'Neck Deep', 'Idles'],
   location: {
-    city: "Tampa",
-    state: "Florida",
+    city: 'Tampa',
+    state: 'Florida'
   },
-  sayHello: function (param) {
-    return "hello " + param;
-  },
-};
-// console.log(obj)
-// call our say hello
-// console.log('calling a method',obj.sayHello());//hello brandon
+  sayHello: (param) => 'Hello ' + param,
 
-// if we want to access an objects value, we must key into using the key
+};
+
+// console.log(obj)
+// console.log(obj.sayHello);//[Function: sayHello]
+// console.log(obj.sayHello('brandon'));//Hello brandon
+
+// If we want to access an objects value, we must key into it using the key
 // key unlocks the value
 
-// two ways to access variables!
+
+// Two ways to access variables
 // dot notation vs bracket notation
 
-// dot notation
-// easier to read
-// cannot use variables as keys
-// if you know the key, use dot notation
-// will key into whatever the string is after the dot, not the value the variable holds
+//bracket notation
+//so to use bracket notation you use just use square brackets on the objects of your choice providing a key
+//ex: obj['key'];
 
-// access name using dot notation
-// console.log(obj.name);
-// console.log(obj.age)
-//there is no key of lastName
-// if you key into something that doesn't exists you get undefined
-// console.log(obj.lastName);//undefined
-let myName = obj.name; // can store values in variables
-// console.log(myName);//Brandon
-
-// bracket notation
-// can use variables as keys, expression in square brackets will evaluate before trying to key into obj
-// console.log(obj['name']);//Brandon
+//we can use bracket notion to key into our obj
+//we just provide a key
+// console.log(obj['name']);//brandon
 // console.log(obj['age']);//27
-// // lastName key does not exists within obj, so we get undefined
-// console.log(obj['lastName']);//undefined
+// console.log(obj['location']);//{ city: 'Tampa', state: 'Florida' }
+// console.log(obj['string']);///undefined
 
-// here is where bracket notation differs
-// the main reason you use it!
-// allows us to access dynamically our objects as we iterate
+//note that we provide the string we want to use a key
 
-//can use variable as a key, lets use name
-let variable = "name";
+// we can also, provide a variable
+// That is the advantage of bracket notation
+let variable = 'name';
 
-// the variable must evaluate before we try and key into the object
-// obj['name']
-// variable is resolving to the value it holds -> 'name'
-// console.log(obj[variable]);//Brandon
+// console.log(obj['name']);//brandon - works
 
-// use bracket notation to create a dynamic variable that will change what we use as our key to access a value as we iterate
-// let testArr = [true, false, true];
-// for(let i = 0; i < testArr.length; i++){
-//   console.log(testArr[i],i);
-// }
+// console.log('variable:', variable);//name
+// console.log(obj[variable]);//brandon
+//when we pass a variable using bracket notation, the variable will evaluates, then we will use what it evaluates too, to key into the object
 
-// we cant do this dot notation
-// console.log(obj.variable);//undefined
+let favBandsKey = 'favoriteBands'
+// console.log(obj[favBandsKey]);//[ 'Joyce Manor', 'Neck Deep', 'Idles' ]
 
-//call function using bracket
-// console.log(obj['sayHello']());//[Function: sayHello]
+// use the string or a variable that holds the string to key into an object
 
-// access nested objects
-// access city
-// can mix and match bracket vs dot
-// console.log('look here', obj.location.city);//Tampa
-// console.log(obj['location'].city);//Tampa
+let res2 = 'location';
+
+// console.log(obj[res2]);//{ city: 'Tampa', state: 'Florida' }
+let first = 'na'
+let sec = 'me';
+// console.log(obj[first + sec]);//brandon
+//obj['name']
+
+
+// bracket notation is good, when you want to be dyanmic and use a variable as your key
+
+// if you know exactly what the key will be, and its not going to change, then use . dont notation.
+// dot notation is just quicker to write
+// easier to write
+
+//provide an object, use the key to get the value
+// console.log(obj.name);//brandon
+// console.log(obj.age);//27
+// console.log(obj.location);//{ city: 'Tampa', state: 'Florida' }
+
+// ! we cannot use variables with dot notation
+// were not going to evaluate the variable after dot notation like we do with bracket
+
+let test = 'name';
+// console.log(obj.test);//undefined
+//when you use dot notation, you cannot use a variable as the key,
+//because it will be used literally,
+// this is the same as
+// console.log(obj['test']);
+// there is no test key in our object
+
+//access nested object/data
+// we can mix and match
+// console.log(obj.location.city);//Tampa
+// console.log(obj.location['city']);//Tampa
 // console.log(obj['location']['city']);//Tampa
+// console.log(obj['location'].city);//Tampa
 
-// what will these print?
-// console.log(obj.favoriteBands); //['Joyce Manor', 'Neck Deep', 'Idles']
-// console.log(obj.lcation); //undefined
-// console.log(obj['age']); // 27
-// //why does like 137 throw an error?
-// // undefined.state
-// console.log(obj.city.state); // throws an error
-// let ex = 'age';
-// // key of .ex does not exist
-// console.log(obj.ex); // undefined
-// // because we use [], ex will resolve to age before keying into it
-// console.log(obj[ex]); // 27
+// console.log(obj.favoriteBands[0][0]);
 
-// console.log(obj.sayHello('anabel'))
+// ! Edit a object
+//change key/value pair
+//change name
+//provide the object, use bracket or dot notation,
+//then the assignment operator, then value youd like to assign
+obj.name = 'krandon';
+obj['name'] = 'BRANDON'
+console.log(obj.name);//'BRANDON',
 
-// ! EDIT A key/value
-
-// change key/value pairs
-// change name
-
-// were saying hey, in the obj named obj, key into using the key name, and use the assignment operator =, to reassign the value to brandon
-// provide object, key, =, and new value
-obj.name = "Krandon";
-obj["name"] = "Brandon";
-
-// change nested obj
-// can use bracket or dot
-obj['location'].city = 'Brooksville';
+//change nested values
+obj.location.city = 'Brooksville';
+obj['location'].city = 'TAMPA'
+console.log(obj.location.city);//'TAMPA',
 
 //can increment age
 obj.age++;
-console.log(obj.age);//28
+obj.age += 1
+console.log(obj.age);//29
 
-// console.log(obj);
+// obj.name = brandon;//ReferenceError: brandon is not defined
+// ! Adding a key/value pair
+// The syntax for adding and editing a key:value pair is the same
+// if key doesnt exists then it will create it for you, if it does, then it will overwrite/edit the value
 
-// similar to arrays
-// let arr3 = [1,2,3];
-// arr3[0] = 100;
-// console.log(arr3)
+//js said hey is there a favColor key? Nope so lets make one and assign the value to be red
+obj.favColor = 'red';
+// console.log(obj)
 
+//add to nested obj
+obj['location'].country = 'USA';
+// console.log(obj.location.country);//USA
 
-// ! CREATE A KEY/VALUE PAIR
-// if you rename or edit a key, it will take last the instance
+//check if value exists in a obj
+//check if name key has a value
+console.log(obj.name);//BRANDON
+// if(obj.name !== undefined) console.log('value exists')
 
-// add new key/value pair
-// if a key doesn't exists it will create it(add to the object), if it does it will overwrite it
+//check if key exists
+//check if name key exists
+// if('name' in obj) console.log('key exists');//true
 
-//so if key doesnt exists, add the key value pair
-obj.favColor = 'Red';
-console.log(obj);// now have a key value pair added
-
-obj['favGame'] = 'pokemon';
+//! delete a key value pair
+// delete an key/value pair in an obj
 console.log(obj);
-
-//if the key does exists, overwrite the key/value pair
-obj.favColor = 'Blue';
-console.log(obj);
-
-// adding to nested object
-// console.log(obj.location);
-obj.location.country = 'USA';
-// console.log(obj);
-
-//check if VALUE exists in a obj
-// check if name key has a value
-if(obj.name !== undefined) console.log('value exists')
-
-// check if KEY exists
-// check if name key exists
-if('name' in obj) console.log('key exists')
-
-// change a key's name
-// point the new key at the old value,delete the old key,
-obj.newName = obj.name;
-delete obj.name;
-console.log(obj);
-
-// ! DELETE A KEY/VALUE
-// delete key/value pair in object
-// delete keyword followed by object.key
-delete obj.age;
-console.log(obj);
-
-
+delete obj.age;// delete the key:value pair
+console.log(obj.age);//undefined
+//no object.age because we deleted it
